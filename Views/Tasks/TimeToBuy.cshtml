@@ -1,0 +1,5 @@
+@inject ViewTask.Services.ITimeService TimeService
+
+<div class="alert alert-secondary mt-3">
+    <strong>Time to buy:</strong> @TimeService.GetTimeForTomorrow()
+</div>

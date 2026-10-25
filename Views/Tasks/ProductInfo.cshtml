@@ -1,0 +1,28 @@
+@using ViewTask.Models
+@{
+    ViewData["Title"] = "ProductInfo";
+    var products = new List<Product>
+    {
+        new Product("Bread", 10),
+        new Product("Milk", 11),
+        new Product("Cheese", 140),
+        new Product("Sausage", 110),
+        new Product("Potato", 7),
+        new Product("Banana", 23),
+        new Product("Tomato", 25),
+        new Product("Candy", 75)
+    };
+}
+
+<h2>Information about product</h2>
+<table class="table" style="width:300px;">
+    <thead>
+        <tr><th>Name</th><th>Price</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var p in products)
+        {
+            <tr><td>@p.Name</td><td>@p.Price</td></tr>
+        }
+    </tbody>
+</table>

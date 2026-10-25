@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "ShoppingCart";
+    var supermarkets = ViewBag.Supermarkets as List<string>;
+    var products = ViewBag.Products as List<string>;
+    DateTime today = DateTime.Today;
+}
+
+<h2>Your shopping cart</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success">@ViewBag.Message</div>
+}
+
+<form method="post">
+    <div class="form-group mb-2">
+        <label>Input your fullname:</label>
+        @Html.TextBox("fullname", "", new { @class = "form-control", style = "width:300px;" })
+    </div>
+    <div class="form-group mb-2">
+        <label>Input your address :</label>
+        @Html.TextBox("address", "", new { @class = "form-control", style = "width:300px;" })
+    </div>
+    <div class="form-group mb-2">
+        @Html.DropDownList("supermarket", new SelectList(supermarkets), new { @class = "form-select", style = "width:200px;" })
+    </div>
+    <div class="form-group mb-2">
+        <div>@Html.RadioButton("shipDate", today.ToString("G"), true) @today.ToString("G")</div>
+        <div>@Html.RadioButton("shipDate", today.AddDays(1).ToString("G")) @today.AddDays(1).ToString("G")</div>
+        <div>@Html.RadioButton("shipDate", today.AddDays(2).ToString("G")) @today.AddDays(2).ToString("G")</div>
+    </div>
+    <div class="form-group mb-2">
+        @Html.ListBox("selectedProducts", new MultiSelectList(products), new { @class = "form-control", style = "width:200px;" })
+    </div>
+    <button type="submit" class="btn btn-secondary mt-2">Send</button>
+</form>
